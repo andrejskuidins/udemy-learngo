@@ -24,5 +24,5 @@ func main() {
   argWithProgUpper := strings.ToUpper(argWithProg)
 
   exclamString := addExclam(argWithProg)
-  fmt.Println(argWithProgUpper + exclamString)
+  fmt.Println(exclamString + argWithProgUpper + exclamString)
 }
