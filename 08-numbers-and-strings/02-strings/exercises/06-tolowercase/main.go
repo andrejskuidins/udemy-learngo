@@ -6,8 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
-
 // ---------------------------------------------------------
 // EXERCISE: ToLowercase
 //
@@ -27,5 +25,23 @@ package main
 //  shepard
 // ---------------------------------------------------------
 
+package main
+
+import (
+  "fmt"
+  "os"
+  "strings"
+)
+
 func main() {
+  if len(os.Args) < 2 {
+    fmt.Println("Please provide a command-line argument.")
+    return
+  }
+
+  argWithProg := os.Args[1]
+  argWithProgLower := strings.ToLower(argWithProg)
+
+  fmt.Println(argWithProgLower)
 }
+
