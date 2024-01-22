@@ -6,7 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
 
 // ---------------------------------------------------------
 // EXERCISE: Print the Type #4
@@ -16,6 +15,13 @@ package main
 //  Type of true is bool
 // ---------------------------------------------------------
 
+
+package main
+import (
+  "fmt"
+)
+
+
 func main() {
-	// ?
+	fmt.Printf("Type of %t is %[1]T\n", true)
 }

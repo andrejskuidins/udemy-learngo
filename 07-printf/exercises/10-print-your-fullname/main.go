@@ -6,8 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
-
 // ---------------------------------------------------------
 // EXERCISE: Print Your Fullname
 //
@@ -21,6 +19,16 @@ package main
 //  Your name is Inanc and your lastname is Gumus.
 // ---------------------------------------------------------
 
+
+package main
+import (
+  "fmt"
+	"os"
+)
+
+
 func main() {
-	// BONUS: Use a variable for the format specifier
+	n := os.Args[1]
+	s := os.Args[2]
+	fmt.Printf("Your name is %s and your surname is %s.\n", n, s)
 }

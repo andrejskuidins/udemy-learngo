@@ -6,7 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
 
 // ---------------------------------------------------------
 // EXERCISE: Print the Type #2
@@ -17,6 +16,13 @@ package main
 //  Type of 3.14 is float64
 // ---------------------------------------------------------
 
+package main
+import (
+  "fmt"
+)
+
+
 func main() {
-	// ?
+	fmt.Printf("Type of %.2f is %[1]T\n", 3.14)
 }
+

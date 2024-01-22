@@ -6,7 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
 
 // ---------------------------------------------------------
 // EXERCISE: Print the Type #3
@@ -17,6 +16,13 @@ package main
 // 	Type of hello is string
 // ---------------------------------------------------------
 
+
+package main
+import (
+  "fmt"
+)
+
+
 func main() {
-	// ?
+	fmt.Printf("Type of %s is %[1]T\n", "hello")
 }
