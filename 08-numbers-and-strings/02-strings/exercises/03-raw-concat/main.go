@@ -1,14 +1,10 @@
-// Copyright © 2018 Inanc Gumus
-// Learn Go Programming Course
-// License: https://creativecommons.org/licenses/by-nc-sa/4.0/
-//
-// For more tutorials  : https://learngoprogramming.com
-// In-person training  : https://www.linkedin.com/in/inancgumus/
-// Follow me on twitter: https://twitter.com/inancgumus
-
 package main
 
-import "fmt"
+import (
+  "fmt"
+  "os"
+  s "strings"
+)
 
 // ---------------------------------------------------------
 // EXERCISE: Raw Concat
@@ -39,8 +35,13 @@ func main() {
 	// replace and concatenate the `name` variable
 	// after `hi ` below
 
-	msg := `hi CONCATENATE-NAME-VARIABLE-HERE!
-how are you?`
+	varName := os.Args[1]
+	msg := s.Join([]string{"hi ", "\nhow are you?"}, varName)
 
 	fmt.Println(msg)
+
+	msg_raw := `hi ` + varName + `
+how are you?`
+
+	fmt.Println(msg_raw)
 }
