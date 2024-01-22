@@ -6,8 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
-
 // ---------------------------------------------------------
 // EXERCISE: Vowel or Consonant
 //
@@ -49,5 +47,22 @@ package main
 //    "x" is a consonant.
 // ---------------------------------------------------------
 
+package main
+import (
+  "fmt"
+	"os"
+	"strings"
+)
+
 func main() {
+	l := os.Args
+	if len(l) < 2 || len(l[1]) > 1 {
+    fmt.Println("Give me a letter")
+  }	else if strings.ContainsAny(l[1],"y") || strings.ContainsAny(l[1],"w") {
+		fmt.Printf("%q is sometimes a vowel, sometimes not.\n", l[1])
+	} else if strings.ContainsAny(l[1],"aeiou") {
+		fmt.Printf("%q is a vowel.\n", l[1])
+	} else {
+		fmt.Printf("%q is a consonant.\n", l[1])
+	}
 }
