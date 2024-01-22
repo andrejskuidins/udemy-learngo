@@ -6,7 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
 
 // ---------------------------------------------------------
 // EXERCISE: Age Seasons
@@ -27,9 +26,31 @@ package main
 //    Booting up
 // ---------------------------------------------------------
 
+package main
+import (
+  "fmt"
+	"os"
+	"strconv"
+)
+
 func main() {
 	// Change this accordingly to produce the expected outputs
-	// age := 10
+	age, err := strconv.ParseInt(os.Args[1], 10, 64)
 
-	// Type your if statement here.
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
+	if age > 60 {
+		fmt.Println("Getting older")
+	} else if age > 30 {
+		fmt.Println("Getting wiser")
+	} else if age > 20 {
+		fmt.Println("Adulthood")
+	} else if age > 10 {
+		fmt.Println("Young blood")
+	} else {
+		fmt.Println("Booting up")
+	}
 }

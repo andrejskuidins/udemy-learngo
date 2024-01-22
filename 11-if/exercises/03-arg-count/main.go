@@ -6,8 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
-
 // ---------------------------------------------------------
 // EXERCISE: Arg Count
 //
@@ -29,5 +27,20 @@ package main
 //    There are 5 arguments
 // ---------------------------------------------------------
 
+package main
+import (
+  "fmt"
+	"os"
+)
+
 func main() {
+  if len(os.Args) < 2 {
+    fmt.Println("Please provide a command-line argument.")
+  } else if len(os.Args) == 2 {
+		fmt.Printf("There is one: %q\n", os.Args[1])
+	} else if len(os.Args) == 3 {
+		fmt.Printf(`There are two: "%s %s"`+"\n", os.Args[1], os.Args[2])
+	} else {
+		fmt.Printf("There are %d arguments\n", len(os.Args)-1)
+	}
 }
