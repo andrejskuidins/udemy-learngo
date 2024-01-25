@@ -6,8 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
-
 // ---------------------------------------------------------
 // EXERCISE: Odd or Even
 //
@@ -36,5 +34,40 @@ package main
 //    "ABC" is not a number
 // ---------------------------------------------------------
 
+package main
+
+import (
+	"fmt"
+	"os"
+	"strconv"
+)
+
+const (
+	usage = "Pick a number"
+	wrong = "%q is not a number\n"
+	even  = "%d is an even number\n"
+	odd   = "%d is an odd number\n"
+	by8   = "%d is an even number and it's divisible by 8\n"
+)
+
 func main() {
+	args := os.Args
+
+	if len(args) != 2 {
+		fmt.Println(usage)
+		return
+	}
+
+	oddeven, err := strconv.Atoi(args[1])
+
+	if err != nil {
+		fmt.Printf(wrong, args[1])
+		return
+	} else if oddeven%8 == 0 {
+		fmt.Printf(by8, oddeven)
+	} else if oddeven%2 == 0 {
+		fmt.Printf(even, oddeven)
+	} else if oddeven%2 != 0 {
+		fmt.Printf(odd, oddeven)
+	}
 }

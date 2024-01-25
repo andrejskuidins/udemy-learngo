@@ -6,7 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-
 // ---------------------------------------------------------
 // STORY
 //
@@ -54,36 +53,36 @@
 package main
 
 import (
-  "fmt"
-  "os"
-  "strconv"
+	"fmt"
+	"os"
+	"strconv"
 )
 
 const (
-  usage    = "Requires age"
-  wrong    = "Wrong age: %q\n"
-  pg       = "PG-Rated"
-  pg13     = "PG-13"
-  rr       = "R-Rated"
+	usage = "Requires age"
+	wrong = "Wrong age: %q\n"
+	pg    = "PG-Rated"
+	pg13  = "PG-13"
+	rr    = "R-Rated"
 )
 
 func main() {
-  args := os.Args
+	args := os.Args
 
-  if len(args) != 2 {
-    fmt.Println(usage)
-    return
-  }
+	if len(args) != 2 {
+		fmt.Println(usage)
+		return
+	}
 
-  rating, err := strconv.Atoi(args[1])
+	rating, err := strconv.Atoi(args[1])
 
-  if err != nil || rating < 0{
-    fmt.Printf(wrong, args[1])
-  } else if rating < 13 {
-    fmt.Println(pg)
-  } else if rating >= 13 && rating <= 17 {
-    fmt.Println(pg13)
-  } else if rating > 17 {
-    fmt.Println(rr)
-  }
+	if err != nil || rating < 0 {
+		fmt.Printf(wrong, args[1])
+	} else if rating < 13 {
+		fmt.Println(pg)
+	} else if rating >= 13 && rating <= 17 {
+		fmt.Println(pg13)
+	} else if rating > 17 {
+		fmt.Println(rr)
+	}
 }
