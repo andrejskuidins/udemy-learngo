@@ -6,8 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
-
 // ---------------------------------------------------------
 // EXERCISE: Days in a Month
 //
@@ -87,5 +85,4 @@ package main
 //    "dEcEmBeR" has 31 days.
 // ---------------------------------------------------------
 
-func main() {
-}
+
