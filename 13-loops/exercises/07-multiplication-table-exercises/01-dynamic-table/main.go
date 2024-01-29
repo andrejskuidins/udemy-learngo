@@ -74,16 +74,22 @@ func main() {
 
 	size, err := strconv.Atoi(args[1])
 
-	if err != nil {
+	if err != nil || size < 0 {
 		fmt.Printf(wrong, args[1])
     return
 	}
 
-	for i := 0; i < size; i++ {
-		for j := 0; j < size; j++ {
-			fmt.Printf("%5d", j)
+	fmt.Print("    X")
+	for i := 0; i <= size; i++ {
+		fmt.Printf("%5d", i)
+	}
+	fmt.Println()
+
+	for i := 0; i <= size; i++ {
+		fmt.Printf("%5d", i)
+		for j := 0; j <= size; j++ {
+			fmt.Printf("%5d", i*j)
 		}
 		fmt.Println()
-
 	}
 }
