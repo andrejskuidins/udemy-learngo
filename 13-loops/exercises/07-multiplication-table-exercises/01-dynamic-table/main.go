@@ -6,8 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
-
 // ---------------------------------------------------------
 // EXERCISE: Dynamic Table
 //
@@ -53,5 +51,39 @@ package main
 //    3    0    3    6    9
 // ---------------------------------------------------------
 
+package main
+
+import (
+  "fmt"
+  "os"
+  "strconv"
+)
+
+const (
+  usage    = "Give me the size of the table"
+  wrong    = "Wrong size: %q\n"
+)
+
 func main() {
+  args := os.Args
+
+	if len(args) != 2 {
+    fmt.Println(usage)
+    return
+  }
+
+	size, err := strconv.Atoi(args[1])
+
+	if err != nil {
+		fmt.Printf(wrong, args[1])
+    return
+	}
+
+	for i := 0; i < size; i++ {
+		for j := 0; j < size; j++ {
+			fmt.Printf("%5d", j)
+		}
+		fmt.Println()
+
+	}
 }
