@@ -6,8 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
-
 // ---------------------------------------------------------
 // EXERCISE: Math Tables
 //
@@ -104,5 +102,70 @@ package main
 //     go run main.go "*" 4
 // ---------------------------------------------------------
 
+package main
+
+import (
+  "fmt"
+  "os"
+  "strconv"
+	"strings"
+)
+
+const (
+  usage    = "Usage: [op=*/+-] [size]"
+	argum    = "Size is missing"
+  wrong    = "Invalid operator: %q\n"
+)
+
 func main() {
+  args := os.Args
+
+	if len(args) < 2 {
+    fmt.Println(usage)
+    return
+  }
+
+	if !(strings.ContainsAny(args[1], "*/+-")){
+		fmt.Printf(wrong, args[1])
+		fmt.Println(usage)
+		return
+	} else if len(args) == 2 {
+		fmt.Println(argum)
+		fmt.Println(usage)
+		return
+	}
+
+	size, err := strconv.Atoi(args[2])
+
+	if err != nil {
+		fmt.Println(usage)
+    return
+	}
+
+	fmt.Printf("%5s", args[1])
+	for i := 0; i <= size; i++ {
+		fmt.Printf("%5d", i)
+	}
+	fmt.Println()
+
+	for i := 0; i <= size; i++ {
+		fmt.Printf("%5d", i)
+		for j := 0; j <= size; j++ {
+			switch args[1] {
+			case "*":
+				fmt.Printf("%5d", i*j)
+			case "/":
+				if j == 0 {
+					fmt.Printf("%5s", "D")
+				} else {
+				fmt.Printf("%5d", i/j)
+				}
+			case "+":
+				fmt.Printf("%5d", i+j)
+			case "-":
+				fmt.Printf("%5d", i-j)
+			}
+		}
+		fmt.Println()
+	}
 }
