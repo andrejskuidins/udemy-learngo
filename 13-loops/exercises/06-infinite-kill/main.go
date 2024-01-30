@@ -71,7 +71,6 @@ func main()  {
 		return
 	}
 
-
 	millis := time.Duration(d)
 	s := "\\/|-"
 
