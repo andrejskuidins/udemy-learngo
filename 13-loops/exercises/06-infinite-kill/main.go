@@ -6,8 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
-
 // ---------------------------------------------------------
 // EXERCISE: Infinite Kill
 //
@@ -52,5 +50,35 @@ package main
 //  | Please Wait. Processing....
 // ---------------------------------------------------------
 
-func main() {
+package main
+import (
+    "fmt"
+    "math/rand"
+    "time"
+		"os"
+		"strconv"
+)
+
+func main()  {
+	s1 := rand.NewSource(time.Now().UnixNano())
+	r1 := rand.New(s1)
+
+	if len(os.Args) != 2 {
+		fmt.Println("Give me millis")
+		return
+	}
+
+	d, err := strconv.Atoi(os.Args[1])
+	if err != nil {
+		fmt.Println("No millis provided. x10")
+		return
+	}
+
+
+	millis := time.Duration(d)
+	for {
+		s := "\\/|-"
+		fmt.Printf("\r%s Please Wait. Processing....\n", string(s[r1.Intn(4)]))
+		time.Sleep(millis * time.Millisecond)
+	}
 }
