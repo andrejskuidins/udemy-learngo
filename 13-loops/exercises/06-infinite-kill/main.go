@@ -60,9 +60,6 @@ import (
 )
 
 func main()  {
-	s1 := rand.NewSource(time.Now().UnixNano())
-	r1 := rand.New(s1)
-
 	if len(os.Args) != 2 {
 		fmt.Println("Give me millis")
 		return
@@ -76,9 +73,10 @@ func main()  {
 
 
 	millis := time.Duration(d)
+	s := "\\/|-"
+
 	for {
-		s := "\\/|-"
-		fmt.Printf("\r%s Please Wait. Processing....\n", string(s[r1.Intn(4)]))
+		fmt.Printf("\r%s Please Wait. Processing....\n", string(s[rand.Intn(4)]))
 		time.Sleep(millis * time.Millisecond)
 	}
 }
