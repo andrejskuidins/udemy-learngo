@@ -6,8 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
-
 // ---------------------------------------------------------
 // EXERCISE: Moodly
 //
@@ -45,5 +43,30 @@ package main
 //     Socrates feels terrible 😩
 // ---------------------------------------------------------
 
-func main() {
+package main
+import (
+    "fmt"
+    "math/rand"
+		"os"
+)
+
+const (
+	usage = "[your name]"
+	mood = "%s feels %s %s\n"
+)
+
+func main()  {
+	args := os.Args
+	if len(args) != 2 {
+		fmt.Println(usage)
+		return
+	}
+
+	moods := [6]string{"good", "happy", "awesome", "bad", "sad", "terrible"}
+	smileyfaces := [6]string{"👍", "😀", "😎", "👎", "😞", "😩"}
+	smileys := [6]string{"\U0001F44D", "\U0001F601", "\U0001F60E", "\U0001F44E", "\U0001F61E", "\U0001F616"}
+
+	randomMood := rand.Intn(4)
+	fmt.Printf(mood, args[1], moods[randomMood], smileys[randomMood])
+	fmt.Printf(mood, args[1], moods[randomMood], smileyfaces[randomMood])
 }
