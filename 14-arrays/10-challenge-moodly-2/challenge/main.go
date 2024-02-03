@@ -58,22 +58,31 @@ import (
 //     Socrates feels terrible 😩
 // ---------------------------------------------------------
 
+const (
+	usage = "[your name] [positive|negative]"
+	mood = "%s feels %s\n"
+)
+
 func main() {
-	args := os.Args[1:]
-	if len(args) != 1 {
-		fmt.Println("[your name]")
+	args := os.Args
+	if len(args) != 3 {
+		fmt.Println(usage)
 		return
 	}
 
-	name := args[0]
+	name := args[1]
 
-	moods := [...]string{
-		"happy 😀", "good 👍", "awesome 😎",
-		"sad 😞", "bad 👎", "terrible 😩",
+	moods := [...][3]string{
+		{"happy 😀", "good 👍", "awesome 😎"},
+		{"sad 😞", "bad 👎", "terrible 😩"},
 	}
 
 	rand.Seed(time.Now().UnixNano())
-	n := rand.Intn(len(moods))
+	n := rand.Intn(len(moods[0]))
 
-	fmt.Printf("%s feels %s\n", name, moods[n])
+	var mi int
+	if args[2] == "negative" {
+		mi = 1
+	}
+	fmt.Printf("%s feels %s\n", name, moods[mi][n])
 }
