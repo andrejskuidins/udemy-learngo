@@ -38,11 +38,7 @@
 //  I recommend you to first solve the exercise yourself before reading the
 //  following hint.
 //
-//
-//  + You can create a new array named alarm with the same length of the
-//    clocks array, so you can copy the alarm array to the clocks array
-//    every 10 seconds.
-//
+
 // ---------------------------------------------------------
 
 package main

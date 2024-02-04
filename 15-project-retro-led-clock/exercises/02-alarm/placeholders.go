@@ -98,6 +98,46 @@ var colon = placeholder{
 	"   ",
 }
 
+var a = placeholder{
+	"███",
+	"█ █",
+	"███",
+	"█ █",
+	"█ █",
+}
+
+var l = placeholder{
+	"█  ",
+	"█  ",
+	"█  ",
+	"█  ",
+	"███",
+}
+
+var r = placeholder{
+	"██ ",
+	"█ █",
+	"██ ",
+	"█ █",
+	"█ █",
+}
+
+var m = placeholder{
+	"█ █",
+	"███",
+	"█ █",
+	"█ █",
+	"█ █",
+}
+
+var exc = placeholder{
+	"  █",
+	"  █",
+	"  █",
+	"   ",
+	"  █",
+}
+
 var digits = [...]placeholder{
-	zero, one, two, three, four, five, six, seven, eight, nine,
+	zero, one, two, three, four, five, six, seven, eight, nine, a, l, r, m, exc,
 }
