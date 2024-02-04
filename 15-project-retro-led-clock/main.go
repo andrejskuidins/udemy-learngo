@@ -15,7 +15,7 @@ func main()  {
 
 	for {
 		fmt.Print("\033[H\033[2J")
-		t := time.Now()tf("%02d:%02d:%02d", t.Hour(), t.Minute(), t.Second())
+		t := time.Now()
 
 		hourStr := fmt.Sprintf("%02d", t.Hour())
 		f1 := int(hourStr[0] - '0')
