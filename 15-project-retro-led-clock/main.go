@@ -36,7 +36,6 @@ func main()  {
 				fmt.Println(digits[i][f1], digits[i][f2], digits[i][11], digits[i][f3], digits[i][f4], digits[i][11], digits[i][f5], digits[i][f6])
 			}
 		}
-		time.Sleep(1000 * time.Millisecond)
-		fmt.Print("\033[H\033[2J")
+		time.Sleep(time.Second)
 	}
 }
