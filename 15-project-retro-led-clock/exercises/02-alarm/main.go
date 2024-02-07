@@ -64,11 +64,17 @@ func main() {
 			digits[sec/10], digits[sec%10],
 		}
 
+		clock_a := [...]placeholder{
+			digits[a], digits[l], digits[a], digits[r], digits[m], digits[exc],
+		}
+
 		for line := range clock[0] {
 			for index, digit := range clock {
 				// colon blink
 				next := clock[index][line]
-				if digit == colon && sec%2 == 0 {
+				if sec%10 == 0 {
+					fmt.Print(clock_a)
+				} else if digit == colon && sec%2 == 0 {
 					next = "   "
 				}
 				fmt.Print(next, "  ")
