@@ -34,10 +34,7 @@
 // HINTS
 //
 //  <<< BEWARE THE SPOILER! >>>
-//
-//  I recommend you to first solve the exercise yourself before reading the
-//  following hint.
-//
+
 
 // ---------------------------------------------------------
 
