@@ -6,7 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
 
 // ---------------------------------------------------------
 // EXERCISE: Currency Converter
@@ -45,5 +44,37 @@ package main
 //     1.00 USD is 113.02 JPY
 // ---------------------------------------------------------
 
+package main
+
+import (
+  "fmt"
+  "os"
+  "strconv"
+)
+
+const (
+  usage    = "Invalid amount. It should be a number."
+  wrong    = "Invalid amount: %q. It should be a number.\n"
+	JPY = iota
+	EUR
+	RUB
+)
+
 func main() {
+  args := os.Args
+
+	if len(args) != 2 {
+    fmt.Println(usage)
+    return
+  }
+
+	rate, err := strconv.Atoi(args[1])
+
+	rates := [...]float64{
+		JPY: 150,
+		EUR: 0.9,
+		RUB: 90,
+	}
+
+	fmt.Printf("%d USD is", rate)
 }
