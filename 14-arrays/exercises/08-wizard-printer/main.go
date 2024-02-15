@@ -6,8 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
-
 // ---------------------------------------------------------
 // EXERCISE: Wizard Printer
 //
@@ -29,5 +27,30 @@ package main
 //   Charles         Darwin          fittest
 // ---------------------------------------------------------
 
+package main
+
+import (
+	"fmt"
+	// "strconv"
+)
+
 func main() {
+	scientists := [...][3]string{
+		{"First Name", "Last Name", "Nickname"},
+		{"Albert", "Einstein", "time"},
+		{"Isaac", "Newton", "apple"},
+		{"Stephen", "Hawking", "blackhole"},
+		{"Marie", "Curie", "radium"},
+		{"Charles", "Darwin ", "fittest"},
+	}
+
+	for i := range(scientists) {
+		n := fmt.Sprintf("%-*s", 10, scientists[i][0])
+		l := fmt.Sprintf("%-*s", 10, scientists[i][1])
+		nick := fmt.Sprintf("%-*s", 10, scientists[i][2])
+		if i == 1 {
+			fmt.Println("     ========================================")
+		}
+		fmt.Printf("     %s     %s     %s\n", n, l, nick)
+	}
 }
