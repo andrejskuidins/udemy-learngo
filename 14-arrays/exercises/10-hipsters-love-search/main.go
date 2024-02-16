@@ -67,9 +67,6 @@ import (
 const (
   usage    = "Tell me a book title"
   wrong    = "We don't have the book: %q\n"
-	JPY = iota
-	EUR
-	RUB
 )
 
 func main() {

@@ -6,8 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
-
 // ---------------------------------------------------------
 // EXERCISE: Find the Average
 //
@@ -39,5 +37,43 @@ package main
 //     Average: 2
 // ---------------------------------------------------------
 
+package main
+
+import (
+  "fmt"
+  "os"
+  "strconv"
+)
+
+const (
+  usage    = "Please tell me numbers (maximum 5 numbers)."
+  wrong    = "Please tell me numbers (maximum 5 numbers).\n"
+	good     = "Your numbers: %v\n"
+)
+
 func main() {
+  args := os.Args
+
+	if len(args) != 6 {
+    fmt.Println(usage)
+    return
+  }
+
+	var numbers []int
+	var sum int
+	var ndigits int
+
+	for _, element := range(args[1:6]) {
+		num, err := strconv.Atoi(element)
+		if err != nil {
+			numbers = append(numbers, 0)
+		} else {
+			numbers = append(numbers, num)
+			sum += num
+			ndigits += 1
+		}
+	}
+
+	fmt.Printf(good, numbers)
+	fmt.Printf("Average: %d\n", sum/ndigits)
 }
