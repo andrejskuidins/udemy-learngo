@@ -6,8 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
-
 // ---------------------------------------------------------
 // EXERCISE: Hipster's Love Bookstore Search Engine
 //
@@ -58,5 +56,46 @@ package main
 //   + Check out the strings package for more information.
 // ---------------------------------------------------------
 
+package main
+
+import (
+  "fmt"
+  "os"
+  "strings"
+)
+
+const (
+  usage    = "Tell me a book title"
+  wrong    = "We don't have the book: %q\n"
+	JPY = iota
+	EUR
+	RUB
+)
+
 func main() {
+  args := os.Args
+
+	if len(args) != 2 {
+    fmt.Println(usage)
+    return
+  }
+
+	books := [...]string{
+		"Kafka's Revenge",
+		"Stay Golden",
+		"Everythingship",
+		"Kafka's Revenge 2nd Edition",
+	}
+
+	var exist bool
+
+	for i := 0; i < len(books); i++ {
+		if strings.Contains(strings.ToLower(books[i]), strings.ToLower(args[1])) {
+			fmt.Printf("%s\n", books[i])
+			exist = true
+		}
+	}
+	if !exist {
+		fmt.Printf(wrong, args[1])
+	}
 }
