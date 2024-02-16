@@ -53,7 +53,7 @@ import (
 )
 
 const (
-  usage    = "Invalid amount. It should be a number."
+  usage    = "Please provide the amount to be converted."
   wrong    = "Invalid amount: %q. It should be a number.\n"
 	JPY = iota
 	EUR
@@ -68,7 +68,12 @@ func main() {
     return
   }
 
-	rate, err := strconv.Atoi(args[1])
+	rate, err := strconv.ParseFloat(args[1], 64)
+
+	if err != nil {
+		fmt.Printf(wrong, args[1])
+    return
+	}
 
 	rates := [...]float64{
 		JPY: 150,
@@ -76,5 +81,7 @@ func main() {
 		RUB: 90,
 	}
 
-	fmt.Printf("%d USD is", rate)
+	for i := 2; i < len(rates); i++ {
+		fmt.Printf("%.2f USD is %.2f\n", rate, float64(rate)*rates[i])
+	}
 }
