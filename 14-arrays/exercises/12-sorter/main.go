@@ -6,7 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
 
 // ---------------------------------------------------------
 // EXERCISE: Number Sorter
@@ -46,5 +45,50 @@ package main
 //     [0 0 1 4 5]
 // ---------------------------------------------------------
 
+package main
+
+import (
+  "fmt"
+  "os"
+  "strconv"
+)
+
+const (
+  usage    = "Please give me up to 5 numbers."
+  wrong    = "Sorry. Go arrays are fixed. So, for now, I'm only supporting sorting 5 numbers..."
+  good     = "Your numbers: %v\n"
+)
+
 func main() {
+  args := os.Args
+
+  if len(args) < 2 {
+    fmt.Println(usage)
+    return
+  } else if len(args) != 6 {
+    fmt.Println(wrong)
+    return
+  }
+
+
+  var numbers [5]int
+  for i := 1; i < 6; i++ {
+    num, err := strconv.Atoi(args[i])
+    if err != nil {
+      numbers[i-1] = 0
+    } else {
+      numbers[i-1] = num
+    }
+  }
+
+	for i := 0; i < len(numbers)-1; i++ {
+		for j := 0; j < len(numbers)-i-1; j++ {
+			fmt.Println(i, j)
+			if numbers[j] > numbers[j+1] {
+				numbers[j], numbers[j+1] = numbers[j+1], numbers[j]
+			}
+		}
+	}
+
+  fmt.Println(numbers)
 }
