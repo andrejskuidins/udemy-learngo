@@ -6,7 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
 
 // ---------------------------------------------------------
 // EXERCISE: Word Finder
@@ -51,7 +50,56 @@ package main
 //     #11: "beginning"
 // ---------------------------------------------------------
 
-const corpus = "lazy cat jumps again and again and again since the beginning this was very important"
+
+
+package main
+
+import (
+  "fmt"
+  "os"
+  "strings"
+)
+
+const (
+  usage    = "Please give me a word to search."
+  havebook    = "We have the book: #%d : %q\n"
+	corpus   = "lazy cat jumps again and again and again since the beginning this was very important"
+)
 
 func main() {
+  args := os.Args
+
+	if len(args) < 3 {
+    fmt.Println(usage)
+    return
+  }
+
+	// filtered := [...]string{
+	// 	"and", "or", "was", "the", "since", "very",
+	// }
+
+	sentence := strings.Fields(corpus)
+
+	for i := 0; i < len(args[1:]); i++ {
+		for ind, v := range sentence {
+			switch v {
+			case "and":
+				continue
+			case "or":
+				continue
+			case "was":
+				continue
+			case "the":
+				continue
+			case "since":
+				continue
+			case "very":
+				continue
+			default:
+				if strings.Contains(strings.ToLower(v), strings.ToLower(args[i+1])) {
+					fmt.Printf(havebook, ind, v)
+				}
+			}
+		}
+	}
 }
