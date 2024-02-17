@@ -74,31 +74,23 @@ func main() {
     return
   }
 
-	// filtered := [...]string{
-	// 	"and", "or", "was", "the", "since", "very",
-	// }
+	filtered := [...]string{
+		"and", "or", "was", "the", "since", "very",
+	}
 
 	sentence := strings.Fields(corpus)
 
+mark:
 	for i := 0; i < len(args[1:]); i++ {
-		for ind, v := range sentence {
-			switch v {
-			case "and":
-				continue
-			case "or":
-				continue
-			case "was":
-				continue
-			case "the":
-				continue
-			case "since":
-				continue
-			case "very":
-				continue
-			default:
-				if strings.Contains(strings.ToLower(v), strings.ToLower(args[i+1])) {
-					fmt.Printf(havebook, ind, v)
-				}
+		for _, v := range filtered {
+			if strings.Contains(strings.ToLower(v), strings.ToLower(args[i+1])) {
+				continue mark
+			}
+		}
+
+		for ind2, w := range sentence {
+			if strings.Contains(strings.ToLower(w), strings.ToLower(args[i+1])) {
+				fmt.Printf(havebook, ind2+1, w)
 			}
 		}
 	}
