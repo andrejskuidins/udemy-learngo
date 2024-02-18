@@ -60,19 +60,43 @@ package main
 
 import (
 	"fmt"
-	// s "strings"
+	s "strings"
+	c "strconv"
 )
 
-var p = fmt.Println
+var pl = fmt.Println
+var pf = fmt.Printf
+
+var slice []int
 
 func main() {
 	// uncomment the declaration below
 	data := "2 4 6 1 3 5"
+	slice_str := s.Fields(data)
 
-	var slice []int
-	for i := range(data) {
-		slice = append(i)
+	for i := range slice_str {
+		num, _ := c.Atoi(slice_str[i])
+		slice = append(slice, num)
 	}
 
-	p(slice)
+	var even []int
+	var odd []int
+
+	fmt.Printf("nums: %v\n", slice)
+
+	for _, v := range slice {
+		if v % 2 == 0 {
+			even = append(even, v)
+		} else {
+			odd = append(odd, v)
+		}
+	}
+	fmt.Printf("evens: %v\n", even)
+	fmt.Printf("odds: %v\n", odd)
+
+	fmt.Printf("middle: %v\n", slice[2:4])
+	fmt.Printf("first 2: %v\n", slice[0:2])
+	fmt.Printf("last 2: %v\n", slice[len(slice)-2:])
+	fmt.Printf("evens last 1: %v\n", even[len(even)-1:])
+	fmt.Printf("odds last 2: %v\n", odd[len(odd)-2:])
 }
