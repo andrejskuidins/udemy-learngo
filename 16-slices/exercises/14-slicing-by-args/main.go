@@ -6,7 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
 
 // ---------------------------------------------------------
 // EXERCISE: Slicing by arguments
@@ -111,7 +110,51 @@ package main
 //
 // ---------------------------------------------------------
 
+package main
+
+import (
+	"fmt"
+	"os"
+	// s "strings"
+	c "strconv"
+)
+
+var pl = fmt.Println
+var pf = fmt.Printf
+
+const (
+	usage    = "Provide only the [starting] and [stopping] positions"
+	wrong    = "Wrong positions"
+)
+
 func main() {
-	// uncomment the slice below
-	// ships := []string{"Normandy", "Verrikan", "Nexus", "Warsaw"}
+	ships := []string{"Normandy", "Verrikan", "Nexus", "Moscow", "Riga"}
+	pl(ships)
+
+	args := os.Args
+	var end int
+
+	if len(args) == 2 {
+		end = len(ships)
+	} else if len(args) == 3 {
+		end, _ = c.Atoi(args[2])
+	} else {
+		fmt.Println(usage)
+		return
+	}
+
+	start, _ := c.Atoi(args[1])
+
+	if start < 0 {
+		fmt.Println(wrong)
+		return
+	} else if end > len(ships) {
+		fmt.Println(wrong)
+		return
+	} else if start > end {
+		fmt.Println(wrong)
+		return
+	}
+
+	pl(ships[start:end])
 }
