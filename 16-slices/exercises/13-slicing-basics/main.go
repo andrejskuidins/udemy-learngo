@@ -6,7 +6,7 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
+
 
 // ---------------------------------------------------------
 // EXERCISE: Slice the numbers
@@ -55,8 +55,24 @@ package main
 //  Find a function in the strings package for splitting the string into []string
 //
 // ---------------------------------------------------------
+package main
+
+
+import (
+	"fmt"
+	// s "strings"
+)
+
+var p = fmt.Println
 
 func main() {
 	// uncomment the declaration below
-	// data := "2 4 6 1 3 5"
+	data := "2 4 6 1 3 5"
+
+	var slice []int
+	for i := range(data) {
+		slice = append(i)
+	}
+
+	p(slice)
 }
