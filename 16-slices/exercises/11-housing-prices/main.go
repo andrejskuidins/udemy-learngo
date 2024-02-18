@@ -6,8 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
-
 // ---------------------------------------------------------
 // EXERCISE: Housing Prices
 //
@@ -66,14 +64,39 @@ package main
 //
 // ---------------------------------------------------------
 
-func main() {
-	const (
-		header = "Location,Size,Beds,Baths,Price"
-		data   = `New York,100,2,1,100000
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+const (
+	header = "Location,Size,Beds,Baths,Price"
+	data   = `New York,100,2,1,100000
 New York,150,3,2,200000
 Paris,200,4,3,400000
 Istanbul,500,10,5,1000000`
 
-		separator = ","
-	)
+	separator = ","
+)
+
+func main() {
+	h := strings.Split(header, separator)
+	input := strings.Split(data, "\n")
+
+	for _, item := range h {
+		fmt.Printf("%-15s", item)
+	}
+	fmt.Println("\n" + strings.Repeat("=", 75))
+
+	for s := range(input) {
+		input := strings.Split(input[s], separator)
+		location := input[0]
+		size := input[1]
+		bed := input[2]
+		bath := input[3]
+		price := input[4]
+		fmt.Printf("%-15s%-15s%-15s%-15s%-15s\n", location, size, bed, bath, price)
+	}
 }
