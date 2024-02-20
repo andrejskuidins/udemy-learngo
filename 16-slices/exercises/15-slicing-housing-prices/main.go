@@ -123,14 +123,71 @@ package main
 //
 // ---------------------------------------------------------
 
-func main() {
-	const (
-		data = `Location,Size,Beds,Baths,Price
-New York,100,2,1,100000
+import (
+  "fmt"
+  "strings"
+	"os"
+  // "strconv"
+)
+
+const (
+  header = "Location,Size,Beds,Baths,Price"
+  data   = `New York,100,2,1,100000
 New York,150,3,2,200000
 Paris,200,4,3,400000
 Istanbul,500,10,5,1000000`
 
-		separator = ","
-	)
+  separator = ","
+)
+
+func findIndex (arr []string, targetString string) int {
+	for i, v := range(arr) {
+		if v == targetString {
+			return i
+		}
+	}
+	return len(arr)-1
+}
+
+func main() {
+	var locations [][5]string
+
+	var col1 int
+	var col2 int
+
+	args := os.Args
+  h := strings.Split(header, separator)
+  input := strings.Split(data, "\n")
+
+	switch len(args) {
+	case 2:
+		col1 = findIndex(h, args[1])
+		col2 = len(h)
+	case 3:
+		col1 = findIndex(h, args[1])
+		col2 = findIndex(h, args[2])+1
+	default:
+		col1 = 0
+		col2 = 5
+	}
+
+	if col1 > col2 {
+		col1 = 0
+	}
+
+  for _, item := range h[col1:col2] {
+    fmt.Printf("%-15s", item)
+  }
+  fmt.Println("\n")
+
+  for s := range(input) {
+    input := strings.Split(input[s], separator)
+		locationData := [5]string{input[0], input[1], input[2], input[3], input[4]}
+		locations = append(locations, locationData)
+
+    // fmt.Printf("%-15s%-15s%-15s%-15s%-15s\n", input[0], input[1], input[2], input[3], input[4])
+  }
+	for _, v := range locations {
+		fmt.Println(v[col1:col2])
+	}
 }
