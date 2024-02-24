@@ -152,6 +152,7 @@ func findIndex (arr []string, targetString string) int {
 func main() {
 	var locations [][5]string
 
+	// setting default cols
 	var col1 int
 	var col2 int
 

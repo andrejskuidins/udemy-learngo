@@ -6,11 +6,7 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
 
-import (
-	"fmt"
-)
 
 // ---------------------------------------------------------
 // EXERCISE: Sort the backing array
@@ -40,6 +36,13 @@ import (
 //
 // ---------------------------------------------------------
 
+package main
+
+import (
+	"fmt"
+	"sort"
+)
+
 func main() {
 	items := []string{
 		"pacman", "mario", "tetris", "doom", "galaga", "frogger",
@@ -50,5 +53,6 @@ func main() {
 	fmt.Println("Original:", items)
 	// ADD YOUR CODE HERE
 	fmt.Println()
+	sort.Strings(items[5:8])
 	fmt.Println("Sorted  :", items)
 }
