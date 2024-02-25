@@ -12,6 +12,7 @@ import (
 	"fmt"
 	"runtime"
 	"runtime/debug"
+	"unsafe"
 )
 
 // ---------------------------------------------------------
@@ -108,6 +109,25 @@ func main() {
 	// 11. print the sizes of the arrays and slices
 	//     hint: use the unsafe.Sizeof function
 	//     see more here: https://golang.org/pkg/unsafe/#Sizeof
+	var arr [size]int
+	report("the memory usage 1")
+
+	newArr := arr
+	report("the memory usage 2")
+
+	passArray(newArr)
+	slice := newArr[:]
+	slice1 := slice[0:1000]
+	slice2 := slice[1000:10000]
+	report("the memory usage 3")
+
+	passSlice(slice1)
+	passSlice(slice2)
+	fmt.Printf("Size of array: %d bytes\n", unsafe.Sizeof(arr))
+	fmt.Printf("Size of array: %d bytes\n", unsafe.Sizeof(newArr))
+	fmt.Printf("Size of slice: %d bytes\n", unsafe.Sizeof(slice))
+	fmt.Printf("Size of slice: %d bytes\n", unsafe.Sizeof(slice1))
+	fmt.Printf("Size of slice: %d bytes\n", unsafe.Sizeof(slice2))
 }
 
 // passes [size]int array — about 80MB!
