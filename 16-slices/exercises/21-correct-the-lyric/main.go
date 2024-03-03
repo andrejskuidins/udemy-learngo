@@ -6,12 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
-
-import (
-	"fmt"
-	"strings"
-)
 
 // ---------------------------------------------------------
 // EXERCISE: Correct the lyric
@@ -63,11 +57,32 @@ import (
 //
 // ---------------------------------------------------------
 
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func findIndex (arr []string, targetString string) int {
+	for i, v := range(arr) {
+		if v == targetString {
+			return i
+		}
+	}
+	return -1
+}
+
 func main() {
 	// DON'T TOUCH THIS:
 	lyric := strings.Fields(`all my troubles seemed so far away oh I believe in yesterday now it looks as though they are here to stay`)
 
 	// ADD YOUR CODE BELOW:
-	// ...
+	l := append([]string{"yesterday"}, lyric...)
+	start := findIndex(lyric, "now")
+	stop := findIndex(lyric, "stay")
+	insertAt := findIndex(lyric, "away")
 	fmt.Printf("%s\n", lyric)
+	final := append(l[0:insertAt+2], append(l[start+1:stop+2],l[insertAt+2:start+1]...)...)
+	fmt.Printf("%s\n", final)
 }
