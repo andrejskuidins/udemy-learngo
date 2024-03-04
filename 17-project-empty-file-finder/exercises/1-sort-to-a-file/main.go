@@ -6,7 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
 
 // ---------------------------------------------------------
 // EXERCISE: Sort and write items to a file
@@ -47,5 +46,43 @@ package main
 //
 // ---------------------------------------------------------
 
+
+
+package main
+
+import (
+	"fmt"
+	"sort"
+	"os"
+)
+
+var pl = fmt.Println
+
+const (
+	wrong = "Send me some items and I will sort them"
+)
+
 func main() {
+	args := os.Args[1:]
+	if len(args) < 2 {
+		pl(wrong)
+	}
+	sort.Strings(args[:])
+	var file []byte
+	for _, v := range args {
+		file = append(file, v...)
+		file = append(file, '\n')
+
+	}
+
+	err := os.WriteFile("sorted.txt", file, 0666)
+	if err != nil {
+		pl("cannot write a file")
+	}
+
+	data, err := os.ReadFile("sorted.txt")
+	if err != nil {
+		pl("cannot read a file")
+	}
+	os.Stdout.Write(data)
 }
