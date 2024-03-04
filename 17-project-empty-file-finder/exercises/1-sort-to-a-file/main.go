@@ -72,7 +72,6 @@ func main() {
 	for _, v := range args {
 		file = append(file, v...)
 		file = append(file, '\n')
-
 	}
 
 	err := os.WriteFile("sorted.txt", file, 0666)
