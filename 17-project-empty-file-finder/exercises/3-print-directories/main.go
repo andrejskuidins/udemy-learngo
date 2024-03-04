@@ -6,7 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
 
 // ---------------------------------------------------------
 // EXERCISE: Find and write the names of subdirectories to a file
@@ -42,30 +41,43 @@ package main
 //             subdir2/
 //             subdir3/
 //
-//
-// HINTS
-//
-//   ONLY READ THIS IF YOU GET STUCK
-//
-//   + Get all the files in a directory using ioutil.ReadDir
-//     (A directory is also a file)
-//
-//   + You can use IsDir method of a FileInfo value to detect
-//     whether a file is a directory or not.
-//
-//     Check out its documentation:
-//
-//     go doc os.FileInfo.IsDir
-//
-//     # or using godocc
-//     godocc os.FileInfo.IsDir
-//
-//   + You can use '\t' escape sequence for indenting the subdirs.
-//
-//   + You can find a sample directory structure under:
-//     solution/ directory
-//
-// ---------------------------------------------------------
+
+package main
+
+import (
+	"fmt"
+	"os"
+	"sort"
+)
 
 func main() {
+	items := os.Args[1:]
+	if len(items) == 0 {
+		fmt.Println("Please provide directory paths")
+		return
+	}
+
+	sort.Strings(items)
+
+	var data []byte
+	for _, s := range items {
+		data = append(data, s...)
+		data = append(data, '\n')
+		subdirs, err := os.ReadDir(s)
+		if err != nil {
+			fmt.Println(err)
+		}
+		for _, file := range subdirs {
+			data = append(data, ' ')
+			data = append(data, file.Name()...)
+			data = append(data, '\n')
+		}
+
+	}
+
+	err := os.WriteFile("dirs.txt", data, 0644)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 }
