@@ -6,15 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
-
-import (
-	"fmt"
-	"io/ioutil"
-	"os"
-	"sort"
-)
-
 // ---------------------------------------------------------
 // EXERCISE: Sort and write items to a file with their ordinals
 //
@@ -55,6 +46,16 @@ import (
 //     Above code prints: hi !
 // ---------------------------------------------------------
 
+package main
+
+
+
+import (
+	"fmt"
+	"os"
+	"sort"
+)
+
 func main() {
 	items := os.Args[1:]
 	if len(items) == 0 {
@@ -65,12 +66,12 @@ func main() {
 	sort.Strings(items)
 
 	var data []byte
-	for _, s := range items {
-		data = append(data, s...)
-		data = append(data, '\n')
+	for i, s := range items {
+		line := fmt.Sprintf("%d. %s\n", i+1, s)
+		data = append(data, line...)
 	}
 
-	err := ioutil.WriteFile("sorted.txt", data, 0644)
+	err := os.WriteFile("sorted.txt", data, 0644)
 	if err != nil {
 		fmt.Println(err)
 		return
