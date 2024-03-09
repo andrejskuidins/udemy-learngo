@@ -46,5 +46,7 @@ func main() {
 		fmt.Printf("         binary: %b\n", word[l])
 	}
 
-	fmt.Println(string([byte("99", "111", "110", "115", "111", "108", "101")]))
+	fmt.Println(string([]byte{99, 111, 110, 115, 111, 108, 101}))
+	fmt.Println(string([]byte{'c', 'o', 'n', 's', 'o', 'l', 'e'}))
+	fmt.Println(string([]byte{0x63, 0x6f, 0x6e, 0x73, 0x6f, 0x6c, 0x65}))
 }
