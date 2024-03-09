@@ -6,7 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
 
 // ---------------------------------------------------------
 // EXERCISE: Convert the strings
@@ -31,15 +30,26 @@ package main
 //  go standard library
 // ---------------------------------------------------------
 
+package main
+
+import (
+	"fmt"
+)
 func main() {
 	// Please uncomment the code below
 
-	// words := []string{
-	// 	"gopher",
-	// 	"programmer",
-	// 	"go language",
-	// 	"go standard library",
-	// }
+	words := []string{
+		"gopher",
+		"programmer",
+		"go language",
+		"go standard library",
+	}
 
-	// var bwords [][]byte
+	var bwords [][]byte
+	for _, v := range words {
+		bwords = append(bwords, []byte(v))
+		fmt.Println(v, []byte(v))
+	}
+	fmt.Println(bwords)
+
 }

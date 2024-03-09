@@ -6,7 +6,7 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
+
 
 // ---------------------------------------------------------
 // EXERCISE: Print the runes
@@ -30,7 +30,19 @@ package main
 // EXPECTED OUTPUT
 //   Run the solution to see the expected output.
 // ---------------------------------------------------------
+package main
+
+import (
+	"fmt"
+)
 
 func main() {
 	const word = "console"
+
+	for l:= range word {
+		fmt.Printf("%c\n", word[l])
+		fmt.Printf("         decimal: %d\n", word[l])
+		fmt.Printf("         hex: 0x%x\n", word[l])
+		fmt.Printf("         binary: %b\n", word[l])
+	}
 }
