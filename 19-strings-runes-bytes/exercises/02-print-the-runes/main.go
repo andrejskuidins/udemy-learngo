@@ -45,4 +45,6 @@ func main() {
 		fmt.Printf("         hex: 0x%x\n", word[l])
 		fmt.Printf("         binary: %b\n", word[l])
 	}
+
+	fmt.Println(string([byte("99", "111", "110", "115", "111", "108", "101")]))
 }
