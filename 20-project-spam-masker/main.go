@@ -8,10 +8,12 @@ import (
 
 func main()  {
 	link := os.Args[1]
-	for i, v := range strings.Split(link,  {
-		if v == rune('h') {
-			buf := link[i:i+7]
-			if buf == "http://"
+	for _, v := range strings.Split(link, " ")  {
+		if v[0:6] == "http://" {
+			buf := v[0:6]
+			for _, r := range buf[6:] {
+				buf = append(buf, "*")
+			}
 		}
 
 		fmt.Printf("%q\n", v)

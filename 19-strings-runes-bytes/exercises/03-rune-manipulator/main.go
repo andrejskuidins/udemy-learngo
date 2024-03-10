@@ -6,7 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
 
 // ---------------------------------------------------------
 // EXERCISE: Rune Manipulator
@@ -16,6 +15,12 @@ package main
 // EXPECTED OUTPUT
 //  Please run the solution.
 // ---------------------------------------------------------
+package main
+
+import (
+	"fmt"
+	"unicode/utf8"
+)
 
 func main() {
 	words := []string{
@@ -30,6 +35,11 @@ func main() {
 
 	// Print the byte and rune length of the strings
 	// Hint: Use len and utf8.RuneCountInString
+	for _, v := range words {
+		fmt.Printf("%v\n", v)
+		fmt.Printf("has %v bytes and %v runes\n", len(v), utf8.RuneCountInString(v))
+		fmt.Printf("first 2 %v runes\n", utf8.DecodeRuneInString(v))
+	}
 
 	// Print the bytes of the strings in hexadecimal
 	// Hint: Use % x verb
