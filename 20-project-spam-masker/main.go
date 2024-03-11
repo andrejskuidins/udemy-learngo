@@ -1,34 +1,27 @@
 package main
 
 import (
-	"fmt"
-	"os"
-	"strings"
+    "fmt"
+    "os"
+    "strings"
 )
 
-func main()  {
-	link := os.Args[1]
-	sent := strings.Split(link, " ")
-	buf := make([]string, 0)
-	final := make([]string, 0)
-	var place int
+func main() {
+    link := os.Args[1]
+    buf := make([]byte, 0)
 
+    for _, v := range strings.Split(link, " ") {
 
-	for i, v := range sent {
-		if len(v) > 6 {
-			fmt.Printf(v[0:6])
-			if v[0:6] == "http://" {
-				buf := append(buf, v[0:6])
-				for i := 0; i < len(v[6:]); i++ {
-					buf = append(buf, "*")
-				}
-				place = i
-			}
-		}
+        if len(v) > 7 && v[:7] == "http://" {
+            fmt.Println(v)
+            for range v[7:] {
+                buf = append(buf, '*')
+            }
+        }
+    }
 
-		final = append(sent[:0], sent[0:place]...)
-		final = append(final, buf...)
-		final = append(final, sent[place+1:]...)
-	}
-	fmt.Printf("%q\n", final)
+		modifiedURL := "http://" + string(buf)[:]
+		fmt.Println(modifiedURL)
 }
+
+// go run main.go "Here: http://www.mylink.com Click!"
