@@ -1,39 +1,31 @@
-// Copyright © 2018 Inanc Gumus
-// Learn Go Programming Course
-// License: https://creativecommons.org/licenses/by-nc-sa/4.0/
-//
-// For more tutorials  : https://learngoprogramming.com
-// In-person training  : https://www.linkedin.com/in/inancgumus/
-// Follow me on twitter: https://twitter.com/inancgumus
-
 package main
 
 import (
-	"fmt"
-	"unicode"
+    "fmt"
+    "os"
+    "unicode/utf8"
 )
 
 func main() {
-	const text = `Galaksinin Batı Sarmal Kolu'nun bir ucunda, haritası bile çıkarılmamış ücra bir köşede, gözlerden uzak, küçük ve sarı bir güneş vardır.
-
-Bu güneşin yörüngesinde, kabaca yüz kırksekiz milyon kilometre uzağında, tamamıyla önemsiz ve mavi-yeşil renkli, küçük bir gezegen döner.
-
-Gezegenin maymun soyundan gelen canlıları öyle ilkeldir ki dijital kol saatinin hâlâ çok etkileyici bir buluş olduğunu düşünürler.`
-
-	const maxWidth = 40
-
-	var lw int // line width
-
-	for _, r := range text {
-		fmt.Printf("%c", r)
-
-		switch lw++; {
-		case lw > maxWidth && r != '\n' && unicode.IsSpace(r):
-			fmt.Println()
-			fallthrough
-		case r == '\n':
-			lw = 0
-		}
-	}
-	fmt.Println()
+    text := os.Args[1]
+    buf := make([]byte, 0, len(text))
+    var runeCount int
+    var prevRune rune
+    for len(text) > 0 {
+        r, size := utf8.DecodeRuneInString(text)
+        text = text[size:]
+        if runeCount > 40 && r == ' ' {
+            buf = append(buf, '\n')
+            runeCount = 0
+        } else if runeCount > 40 && prevRune == ' ' {
+            buf = append(buf, '\n')
+            buf = append(buf, []byte(string(r))...)
+            runeCount = 1
+        } else {
+            buf = append(buf, []byte(string(r))...)
+            runeCount++
+        }
+        prevRune = r
+    }
+    fmt.Println(string(buf))
 }
