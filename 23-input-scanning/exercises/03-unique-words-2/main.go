@@ -6,8 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
-
 // ---------------------------------------------------------
 // EXERCISE: Unique Words 2
 //
@@ -32,9 +30,39 @@ package main
 //
 // ---------------------------------------------------------
 
+
+// This is the regular expression pattern you need to use:
+// [^A-Za-z]+
+//
+// Matches to any character but upper case and lower case letters
+
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+	"regexp"
+)
+
 func main() {
-	// This is the regular expression pattern you need to use:
-	// [^A-Za-z]+
-	//
-	// Matches to any character but upper case and lower case letters
+	words := 0
+	unique := make(map[string]bool)
+	rx := regexp.MustCompile(`[^A-Za-z]+`)
+
+
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Split(bufio.ScanWords)
+
+	for scanner.Scan() {
+		word := strings.ToLower(scanner.Text())
+		if rx.MatchString(word) {
+			words++
+			unique[word] = true
+		}
+	}
+
+	// fmt.Println(unique)
+	fmt.Printf("There are %d words, %d of them are unique.\n", words, len(unique)) // Println will add back the final '\n'
 }
