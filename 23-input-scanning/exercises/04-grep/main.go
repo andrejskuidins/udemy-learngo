@@ -6,7 +6,7 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
+
 
 // ---------------------------------------------------------
 // EXERCISE: Grep Clone
@@ -33,5 +33,40 @@ package main
 //
 // ---------------------------------------------------------
 
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+	// "regexp"
+)
+
 func main() {
+	// rx := regexp.MustCompile(os.Args[1])
+	grep := os.Args[1]
+
+	scanner := bufio.NewScanner(os.Stdin)
+
+	for scanner.Scan() {
+		line := strings.ToLower(scanner.Text())
+		if strings.Contains(line, grep) {
+			fmt.Println(line)
+		}
+	}
+
+	// linesLoop:
+	// for scanner.Scan() {
+	// 	line := strings.ToLower(scanner.Text())
+	// 	for _, v := range strings.Split(line, " ") {
+	// 		if rx.MatchString(v) {
+	// 			fmt.Println(line)
+	// 			continue linesLoop
+	// 		}
+	// 	}
+	// }
+
+	// fmt.Println(unique)
+
 }
