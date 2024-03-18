@@ -25,4 +25,6 @@ func main() {
 	}
 	fmt.Printf("There are %d words, %d of them are unique.\n",
 		total, len(words))
+
+	fmt.Println(words)
 }

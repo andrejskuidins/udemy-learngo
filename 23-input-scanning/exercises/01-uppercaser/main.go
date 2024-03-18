@@ -6,7 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
 
 // ---------------------------------------------------------
 // EXERCISE: Uppercaser
@@ -24,5 +23,18 @@ package main
 //  Please run the solution to see the expected output.
 // ---------------------------------------------------------
 
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
+
 func main() {
+	scanner := bufio.NewScanner(os.Stdin)
+	for scanner.Scan() {
+		fmt.Println(strings.ToUpper(scanner.Text())) // Println will add back the final '\n'
+	}
 }

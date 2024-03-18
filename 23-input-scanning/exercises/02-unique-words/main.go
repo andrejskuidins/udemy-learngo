@@ -6,8 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
-
 // ---------------------------------------------------------
 // EXERCISE: Unique Words
 //
@@ -31,5 +29,26 @@ package main
 //
 // ---------------------------------------------------------
 
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
+
 func main() {
+	words := 0
+	unique := make(map[string]bool)
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Split(bufio.ScanWords)
+
+	for scanner.Scan() {
+		words++
+		unique[strings.ToLower(scanner.Text())] = true
+	}
+
+	// fmt.Println(unique)
+	fmt.Printf("There are %d words, %d of them are unique.\n", words, len(unique)) // Println will add back the final '\n'
 }
