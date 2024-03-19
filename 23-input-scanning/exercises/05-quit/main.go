@@ -55,12 +55,11 @@ func main() {
 			scanner.Scan()
 			// Holds the string that scanned
 			text := scanner.Text()
-			if !vocab[strings.ToLower(text)] {
-				vocab[strings.ToLower(text)] = true
-			} else {
-					break
+			if vocab[strings.ToLower(text)] {
+				fmt.Println("TWICE!")
+				return
 			}
-
+			vocab[strings.ToLower(text)] = true
 	}
 	// Use collected inputs
 	fmt.Println(vocab)
