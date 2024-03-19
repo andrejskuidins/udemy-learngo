@@ -54,12 +54,12 @@ func main() {
 			// Scans a line from Stdin(Console)
 			scanner.Scan()
 			// Holds the string that scanned
-			text := scanner.Text()
-			if vocab[strings.ToLower(text)] {
+			text := strings.ToLower(scanner.Text())
+			if vocab[text] {
 				fmt.Println("TWICE!")
 				return
 			}
-			vocab[strings.ToLower(text)] = true
+			vocab[text] = true
 	}
 	// Use collected inputs
 	fmt.Println(vocab)
