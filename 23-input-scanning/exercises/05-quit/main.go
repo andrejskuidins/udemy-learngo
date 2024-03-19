@@ -46,39 +46,22 @@ import (
 )
 
 func main() {
-	// rx := regexp.MustCompile(os.Args[1])
-	unique := make(map[string]bool)
-	grep := os.Args[1]
-
+	// To create dynamic map
+	vocab := make(map[string]bool)
 	scanner := bufio.NewScanner(os.Stdin)
+	for {
+			fmt.Print("Enter Text: ")
+			// Scans a line from Stdin(Console)
+			scanner.Scan()
+			// Holds the string that scanned
+			text := scanner.Text()
+			if !vocab[strings.ToLower(text)] {
+				vocab[strings.ToLower(text)] = true
+			} else {
+					break
+			}
 
-	for scanner.Scan() {
-		line := strings.ToLower(scanner.Text())
-		if strings.Contains(line, grep) {
-			fmt.Println(line)
-		}
 	}
-}
-package main
-
-import (
-	"bufio"
-	"fmt"
-	"os"
-	"strings"
-)
-
-func main() {
-	words := 0
-	unique := make(map[string]bool)
-	scanner := bufio.NewScanner(os.Stdin)
-	scanner.Split(bufio.ScanWords)
-
-	for scanner.Scan() {
-		words++
-		unique[strings.ToLower(scanner.Text())] = true
-	}
-
-	// fmt.Println(unique)
-	fmt.Printf("There are %d words, %d of them are unique.\n", words, len(unique)) // Println will add back the final '\n'
+	// Use collected inputs
+	fmt.Println(vocab)
 }
