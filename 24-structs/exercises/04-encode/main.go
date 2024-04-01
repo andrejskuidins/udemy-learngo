@@ -67,33 +67,33 @@ import (
 	"os"
 	"strings"
 	"strconv"
-	"regexp"
+	"encoding/json"
 )
 
 type item struct {
-	id int
-	name string
-	price int
+	Id int
+	Name string
+	Price int
 }
 
 type game struct {
-	item item
-	genre string
+	Item item
+	Genre string
 }
 
 func main() {
 	games := []game{
 		{
-			item:  item{1, "god of war", 59},
-			genre: "Action",
+			Item:  item{1, "god of war", 59},
+			Genre: "Action",
 		},
 		{
-			item:  item{2, "x-com 2", 49},
-			genre: "Adventure",
+			Item:  item{2, "x-com 2", 49},
+			Genre: "Adventure",
 		},
 		{
-			item:  item{3, "minecraft", 69},
-			genre: "RPG",
+			Item:  item{3, "minecraft", 69},
+			Genre: "RPG",
 		},
 	}
 
@@ -103,39 +103,63 @@ func main() {
 	// index the games by id
 	byID := make(map[int]game)
 	for _, g := range games {
-		byID[g.item.id] = g
+		byID[g.Item.Id] = g
 	}
 
 	for {
 		scanner := bufio.NewScanner(os.Stdin)
 		fmt.Print("\n> l    : lists all the games")
 		fmt.Print("\n> id N : queries a game by id")
+		fmt.Print("\n> s    : exports the data to json and quits")
 		fmt.Print("\n> q    : quits\n\n")
 		// Scans a line from Stdin(Console)
 		scanner.Scan()
 		// Holds the string that scanned
-		text := strings.ToLower(scanner.Text())
-		switch text {
+		text := strings.Fields(scanner.Text())
+		switch text[0] {
 		case "l":
 			for _, g := range games {
-				fmt.Printf("#%-2d %-13s %-12s $%-8d\n", g.item.id, g.item.name, g.genre, g.item.price)
+				fmt.Printf("#%-2d %-13s %-12s $%-8d\n", g.Item.Id, g.Item.Name, g.Genre, g.Item.Price)
 				continue
 			}
 		case "q":
 			fmt.Println("bye!")
 			return
-		}
-		pattern := `^id\s+(\d+)$`
-		re := regexp.MustCompile(pattern)
-		matches := re.MatchString(text)
-		if matches {
-			ind, _ := strconv.Atoi(strings.Split(text, " ")[1])
-			if ind > len(games) {
+		case "id":
+			if len(text) < 2 {
+				fmt.Println("wrong id")
+				continue
+			}
+			ind, err := strconv.Atoi(text[1])
+			if err != nil {
+				fmt.Println("wrong id")
+			} else if ind > len(games) {
 				fmt.Println("sorry. I don't have the game")
 			} else {
 				g := byID[ind]
-				fmt.Printf("#%-2d %-13s %-12s $%-8d\n", g.item.id, g.item.name, g.genre, g.item.price,)
+				fmt.Printf("#%-2d %-13s %-12s $%-8d\n", g.Item.Id, g.Item.Name, g.Genre, g.Item.Price)
 			}
+		case "s":
+			type jsonGame struct {
+				ID    int    `json:"id"`
+				Name  string `json:"name"`
+				Genre string `json:"genre"`
+				Price int    `json:"price"`
+			}
+
+			// load the data into the encodable game values
+			var encodable []jsonGame
+			for _, g := range games {
+				encodable = append(encodable,
+					jsonGame{g.Item.Id, g.Item.Name, g.Genre, g.Item.Price})
+			}
+
+			json_out, err := json.MarshalIndent(encodable, "",  "\t")
+			if err != nil {
+				fmt.Println(err)
+				continue
+			}
+			fmt.Println(string(json_out))
 		}
 	}
 }
