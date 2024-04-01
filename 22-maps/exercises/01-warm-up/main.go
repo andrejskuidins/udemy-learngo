@@ -30,6 +30,10 @@ func main() {
 	// #1
 	// Key        : Last name
 	// Element    : Phone number
+	var shopbask map[string]string
+
+	shopbask["rossum"] = "555555"
+	shopbask["doccum"] = "666666"
 
 	// #2
 	// Key        : Product ID

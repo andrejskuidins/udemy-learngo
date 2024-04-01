@@ -6,7 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
 
 // ---------------------------------------------------------
 // EXERCISE: Populate and Lookup
@@ -69,5 +68,37 @@ package main
 //
 // ---------------------------------------------------------
 
+package main
+
+import "fmt"
+
 func main() {
+	var (
+		phones map[string]string
+		// Key        : Last name
+		// Element    : Phone number
+
+		// Key        : Product ID
+		// Element    : Available / Unavailable
+		products map[int]bool
+
+		multiPhones map[string][]string
+		// Key        : Last name
+		// Element    : Phone numbers
+
+		basket map[int]map[int]int
+		// Key        : Customer ID
+		// Element Key:
+		//   Key: Product ID Element: Quantity
+	)
+
+	phones["bowen"] = "202-555-0179"
+	phones["dulin"] = "03.37.77.63.06"
+	phones["greco"] = "03489940240"
+
+	phones["617841573"] = "true"
+	phones["879401371"] = "false"
+	phones["576872813"] = "true"
+
+	multiPhones["dulin"] = ["03.37.77.63.06, 03.37.77.50.11, 03.37.77.11.11"]
 }
