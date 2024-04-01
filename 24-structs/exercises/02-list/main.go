@@ -6,7 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
 
 // ---------------------------------------------------------
 // EXERCISE: List
@@ -29,6 +28,61 @@ package main
 //  quit commands.
 // ---------------------------------------------------------
 
+package main
+
+import (
+	"fmt"
+	"bufio"
+	"os"
+	"strings"
+)
+
+type item struct {
+	id int
+	name string
+	price int
+}
+
+type game struct {
+	item item
+	genre string
+}
+
 func main() {
-	// use your solution from the previous exercise
+	games := []game{
+		{
+			item:  item{1, "god of war", 59},
+			genre: "Action",
+		},
+		{
+			item:  item{2, "x-com 2", 49},
+			genre: "Adventure",
+		},
+		{
+			item:  item{3, "minecraft", 69},
+			genre: "RPG",
+		},
+	}
+
+	fmt.Printf("Andy's game store has %d games.\n", len(games))
+	// fmt.Printf("id  name          genre        price\n")
+
+
+	for {
+		scanner := bufio.NewScanner(os.Stdin)
+		fmt.Print("\n> l   : lists all the games")
+		fmt.Print("\n> q   : quits\n\n")
+		// Scans a line from Stdin(Console)
+		scanner.Scan()
+		// Holds the string that scanned
+		text := strings.ToLower(scanner.Text())
+		if text == "l" {
+			for _, g := range games {
+				fmt.Printf("#%-2d %-13s %-12s $%-8d\n", g.item.id, g.item.name, g.genre, g.item.price,)
+			}
+		} else if text == "q" {
+			fmt.Println("bye!")
+			return
+		}
+	}
 }
