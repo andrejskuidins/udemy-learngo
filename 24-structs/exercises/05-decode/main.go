@@ -155,6 +155,14 @@ func main() {
 			}
 			fmt.Println(string(json_out))
 		case "ld":
+			err := json.Unmarshal([]byte(data), &encodable)
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+			for _, game := range encodable {
+				fmt.Println("+ ", game.ID, game.Name, game.Genre, game.Price)
+			}
 
 		}
 	}
